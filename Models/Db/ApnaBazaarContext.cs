@@ -10,9 +10,9 @@ public partial class ApnaBazaarContext : DbContext
     {
     }
 
-    public ApnaBazaarContext(DbContextOptions<ApnaBazaarContext> options)
-        : base(options)
+    public ApnaBazaarContext(DbContextOptions<ApnaBazaarContext> options): base(options)
     {
+
     }
 
     public virtual DbSet<Menu> Menus { get; set; }
