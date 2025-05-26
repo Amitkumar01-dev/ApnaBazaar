@@ -10,10 +10,12 @@ public partial class ApnaBazaarContext : DbContext
     {
     }
 
-    public ApnaBazaarContext(DbContextOptions<ApnaBazaarContext> options): base(options)
+    public ApnaBazaarContext(DbContextOptions<ApnaBazaarContext> options)
+        : base(options)
     {
-
     }
+
+    public virtual DbSet<Banner> Banners { get; set; }
 
     public virtual DbSet<Menu> Menus { get; set; }
 
@@ -23,6 +25,20 @@ public partial class ApnaBazaarContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Banner>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Banner__3214EC27F6A2476D");
+
+            entity.ToTable("Banner");
+
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.ImageName).HasMaxLength(100);
+            entity.Property(e => e.Link).HasMaxLength(200);
+            entity.Property(e => e.Position).HasMaxLength(100);
+            entity.Property(e => e.SubTitle).HasMaxLength(1000);
+            entity.Property(e => e.Title).HasMaxLength(200);
+        });
+
         modelBuilder.Entity<Menu>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Menus__3214EC27F8DB7908");
